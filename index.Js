@@ -49,7 +49,7 @@ const emailChecker = (value) => {;
     }
 };
 const passwordChecker = (value) => {
-    progressBar.classList = ""; // Evite que les progressBar soit enlever au fuir et a mesure qu'on suprime le mot de passe
+    progressBar.classList = ""; // Permet que les progressBar soit enlever au fuir et a mesure qu'on suprime le mot de passe
     // Si ça ne correspond pas
     if (!value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
         errorDisplay("password", "Minimum de 8 caractères, une majuscule, un chiffre et un caractère special");
@@ -63,11 +63,12 @@ const passwordChecker = (value) => {
         errorDisplay("password", "", true);
         password = value;
     }
+    // Verifie les deux mots de passent à chaque fois q'un caractere est taper
     if (confirmPass) confirmChecker(confirmPass);
 };
 
 const confirmChecker = (value) => {
-    // Si les deux passes ne correspond pas
+    // Si les deux passes ne correspondent pas
     if (value !== password) {
         errorDisplay("confirm", "Les mots de passe ne correspondent pas");
         confirmPass = false;
@@ -112,7 +113,7 @@ form.addEventListener("submit", (e) => {
 
         // Pour vider les champs après l'envoi du form
         inputs.forEach(input => input.value = "");
-        // Et enlève la progressBar
+        // Et enlèver la progressBar
         progressBar.classList = "";
         // Et là c'est pour eviter une seconde envoi du form
         pseudo = null;
